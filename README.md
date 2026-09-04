@@ -4,7 +4,8 @@
 
 ## IMPLEMETATION OF VIGENERE CIPHER
  
-
+## NAME :  PANGA THANUJA
+## REGISTER NUMBER: 212224040231
 ## AIM:
 
 To implement the Vigenere Cipher substitution technique using C program.
@@ -20,17 +21,69 @@ alphabet shifted cyclically to the left compared to the previous alphabet, corre
 ## ALGORITHM:
 
 STEP-1: Arrange the alphabets in row and column of a 26*26 matrix.
+
 STEP-2: Circulate the alphabets in each row to position left such that the first letter is attached to last.
+
 STEP-3: Repeat this process for all 26 rows and construct the final key matrix.
+
 STEP-4: The keyword and the plain text is read from the user.
+
 STEP-5: The characters in the keyword are repeated sequentially so as to match with that of the plain text.
+
 STEP-6: Pick the first letter of the plain text and that of the keyword as the row indices and column indices respectively.
+
 STEP-7: The junction character where these two meet forms the cipher character.
+
 STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
-## PROGRAM
+## PROGRAM:
+```
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char text[100], key[100];
+    int i, k;
+
+    printf("Enter text: ");
+    scanf("%s", text);
+
+    printf("Enter key: ");
+    scanf("%s", key);
+
+    for(i=0; text[i]; i++) {
+        k = key[i % strlen(key)] - 'A';
+
+        if(isupper(text[i]))
+            text[i] = (text[i]-'A'+k)%26+'A';
+        else
+            text[i] = (text[i]-'a'+k)%26+'a';
+    }
+
+    printf("Encrypted: %s\n", text);
+
+    for(i=0; text[i]; i++) {
+        k = key[i % strlen(key)] - 'A';
+
+        if(isupper(text[i]))
+            text[i] = (text[i]-'A'-k+26)%26+'A';
+        else
+            text[i] = (text[i]-'a'-k+26)%26+'a';
+    }
+
+    printf("Decrypted: %s", text);
+
+    return 0;
+}
+```
+
+
 
 ## OUTPUT
+<img width="1511" height="732" alt="image" src="https://github.com/user-attachments/assets/661c1411-e081-43c6-9cad-7303110df293" />
+
 
 ## RESULT
+The program is executed successfully.
